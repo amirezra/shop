@@ -241,6 +241,11 @@
     footer strong { color: var(--primary); }
 
     /* ---- RESPONSIVE ---- */
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
     @media (max-width: 600px) {
       .hero h1 { font-size: 1.8rem; }
       .products-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
@@ -271,7 +276,7 @@
     <div class="badge green">✅ בטוח לכל גיל</div>
     <div class="badge orange">⭐ איכות מובטחת</div>
   </div>
-  <p style="margin-top: 24px; font-size: 1rem; color: #555;">להזמנות, אנא צרו קשר מדף הקבוצה</p>
+  <p style="margin-top: 24px; font-size: 1rem; color: #555; animation: blink 1s step-start infinite;">להזמנות, אנא צרו קשר מדף הקבוצה</p>
   <div class="contact-row" style="margin-top: 10px;">
     <a href="https://whatsapp.com/channel/0029VbBiHOP4Crfa5j8pvG0W" target="_blank" class="contact-chip">💬 הצטרפו לערוץ WhatsApp שלנו</a>
   </div>
