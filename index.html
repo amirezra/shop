@@ -310,14 +310,17 @@
 </section>
 
 <script>
+  /* עוזר לדפדפן/CDN לטעון מחדש תמונות אחרי העלאה לשרת */
+  const IMG_CACHE = '20260420';
+
   const products = [
-    { name: 'סט שלושה פסלונים צהובים', price: 12, priceUnit: 'לסט', img: 'images/img15.jpeg', desc: 'פסלונים חמודים בעיצוב מינימליסטי, בגוון צהוב בוהק — כל אחד בתנוחה שונה.' },
-    { name: 'זוג בלוקי ספוג ירוק זוהר', price: 6, priceUnit: 'לזוג', img: 'images/img16.jpeg', desc: 'שני בלוקי ספוג צפופים בצבע ניאון, עם חריצים מעוגלים בחלק העליון.' },
+    { name: 'סט שלושה פסלונים צהובים', price: 7, img: 'images/img15.jpeg', desc: 'פסלונים חמודים בעיצוב מינימליסטי, בגוון צהוב בוהק — כל אחד בתנוחה שונה.' },
+    { name: 'ספוג סנדוויץ׳ ירוק זוהר', price: 6, img: 'images/img16.jpeg', desc: 'ספוג צפוף בצבע ניאון, בצורת סנדוויץ׳ עם חריצים מעוגלים בחלק העליון.' },
     { name: 'כדור לחץ ירוק שקוף', price: 7, img: 'images/img17.jpeg', desc: 'כדור למחיצה עם כדוריות ג׳ל ירוקות וחלקיקים לבנים קטנים בפנים.' },
     { name: 'ספוג דוב חמוד', price: 5, img: 'images/img18.jpeg' },
-    { name: 'ארבעה דגים עגולים', price: 8, priceUnit: 'לסט', img: 'images/img19.jpeg', desc: 'דגים מגומי עם גוף לבן שקוף למחצה וסנפירים צבעוניים בכתום וירוק.' },
-    { name: 'שישה לבבות אדומים', price: 6, priceUnit: 'למארז', img: 'images/img20.jpeg', desc: 'לבבות קטנות וחלקות בגוון אדום — רובן באריזה אישית שקופה.' },
-    { name: 'סט שלושה ספוגי צפרדע', price: 9, priceUnit: 'לסט', img: 'images/img21.jpeg', desc: 'צפרדעות ירוקות חמודות עם עיניים לבנות, כל אחת בשקית רשת לתלייה.' },
+    { name: 'ארבעה דגים עגולים', price: 5, img: 'images/img19.jpeg', desc: 'דגים מגומי עם גוף לבן שקוף למחצה וסנפירים צבעוניים בכתום וירוק.' },
+    { name: 'לבבות אדומים', price: 5, img: 'images/img20.jpeg', desc: 'לבבות קטנות וחלקות בגוון אדום — רובן באריזה אישית שקופה.' },
+    { name: 'סט שלושה ספוגי צפרדע', price: 4, img: 'images/img21.jpeg', desc: 'צפרדעות ירוקות חמודות עם עיניים לבנות, כל אחת בשקית רשת לתלייה.' },
     { name: 'פריט ורוד מעוצב', price: 10, img: 'images/img22.jpeg', desc: 'פריט ארוך בגוון ורוד עז עם טקסטורה רכה — מראה מופשט ומיוחד.' },
     { name: 'סט מקשי מקלדת צבעוניים', price: 15, img: 'images/img14.jpeg' },
     { name: 'מחזיק מפתחות רוביק שחור-לבן-כחול', price: 10, img: 'images/img13.jpg' },
@@ -335,9 +338,10 @@
 
   const grid = document.getElementById('productsGrid');
   products.forEach(p => {
+    const imgSrc = new URL(p.img, document.baseURI).href + (p.img.includes('?') ? '&' : '?') + 'v=' + IMG_CACHE;
     grid.innerHTML += `
       <div class="product-card">
-        <img class="product-img" src="${p.img}" alt="${p.name}" loading="lazy" />
+        <img class="product-img" src="${imgSrc}" alt="${p.name}" loading="lazy" decoding="async" />
         <div class="product-info">
           <div class="product-name">${p.name}</div>
           ${p.desc ? `<div class="product-desc">${p.desc}</div>` : ''}
